@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 
@@ -26,7 +26,7 @@ background:#090909;
 
 body{
 
-font-family:Manrope,sans-serif;
+font-family:Jost,sans-serif;
 background:#090909;
 color:white;
 overflow-x:hidden;
@@ -39,6 +39,7 @@ overflow-x:hidden;
 --wine:#6c1424;
 --cream:#efe5d5;
 --gray:#999;
+--font-heading:"Libre Caslon Display",serif;
 
 }
 
@@ -153,7 +154,7 @@ border-bottom:1px solid rgba(255,255,255,.1);
 
 .logo{
 
-font-family:"Cormorant Garamond",serif;
+font-family:var(--font-heading);
 
 font-size:42px;
 
@@ -369,7 +370,7 @@ font-size:22px;
 
 letter-spacing:3px;
 
-font-family:"Cormorant Garamond",serif;
+font-family:var(--font-heading);
 
 transition:.3s;
 
@@ -459,7 +460,7 @@ margin-bottom:20px;
 
 font-size:150px;
 
-font-family:"Cormorant Garamond",serif;
+font-family:var(--font-heading);
 
 line-height:.85;
 
@@ -581,7 +582,7 @@ animation:run 28s linear infinite;
 
 font-size:70px;
 
-font-family:"Cormorant Garamond";
+font-family:var(--font-heading);
 
 margin-right:80px;
 
@@ -635,7 +636,7 @@ letter-spacing:4px;
 
 font-size:70px;
 
-font-family:"Cormorant Garamond";
+font-family:var(--font-heading);
 
 margin-top:20px;
 
@@ -710,7 +711,7 @@ color:var(--gold);
 
 .menuLeft h2{
 
-font-family:"Cormorant Garamond";
+font-family:var(--font-heading);
 font-size:72px;
 margin-top:20px;
 line-height:.95;
@@ -753,7 +754,7 @@ border-color:var(--gold);
 
 .item h3{
 
-font-family:"Cormorant Garamond";
+font-family:var(--font-heading);
 font-size:42px;
 font-weight:500;
 
@@ -771,7 +772,7 @@ margin-top:8px;
 .price{
 
 font-size:28px;
-font-family:"Cormorant Garamond";
+font-family:var(--font-heading);
 color:var(--gold);
 
 }
@@ -788,15 +789,16 @@ align-items:center;
 .chef h2{
 
 font-size:82px;
-font-family:"Cormorant Garamond";
+font-family:var(--font-heading);
 
 }
 
 .chef p{
 
 margin-top:35px;
-line-height:2;
-color:#bbb;
+line-height:1.9;
+font-size:18px;
+color:#ccc;
 
 }
 
@@ -838,7 +840,7 @@ color:var(--gold);
 
 .booking h2{
 
-font-family:"Cormorant Garamond";
+font-family:var(--font-heading);
 font-size:90px;
 margin:20px 0 70px;
 
@@ -908,7 +910,7 @@ align-items:center;
 
 font-size:82px;
 
-font-family:"Cormorant Garamond";
+font-family:var(--font-heading);
 
 }
 
@@ -918,21 +920,132 @@ display:flex;
 
 flex-direction:column;
 
-gap:28px;
+gap:34px;
 
 margin-top:50px;
 
 }
 
-.info div{
+.infoRow{
 
-font-size:20px;
+display:flex;
 
-color:#ddd;
+align-items:flex-start;
+
+gap:20px;
 
 }
 
-footer{
+.infoIcon{
+
+width:22px;
+
+height:22px;
+
+flex-shrink:0;
+
+color:var(--gold);
+
+margin-top:4px;
+
+}
+
+.infoLabel{
+
+display:block;
+
+font-size:11px;
+
+letter-spacing:3px;
+
+text-transform:uppercase;
+
+color:#888;
+
+font-family:Jost,sans-serif;
+
+margin-bottom:6px;
+
+}
+
+.infoValue{
+
+display:block;
+
+font-family:var(--font-heading);
+
+font-size:24px;
+
+font-weight:400;
+
+color:#f2f2f2;
+
+letter-spacing:.3px;
+
+}
+
+.phoneValue{
+
+font-family:Jost,sans-serif;
+
+font-weight:500;
+
+letter-spacing:1px;
+
+font-size:22px;
+
+}
+
+.ratingBadge{
+
+margin-top:40px;
+display:inline-flex;
+align-items:center;
+gap:14px;
+padding:16px 26px;
+border:1px solid rgba(198,164,107,.35);
+border-radius:100px;
+background:rgba(198,164,107,.06);
+
+}
+
+.ratingBadge .stars{
+
+color:var(--gold);
+font-size:16px;
+letter-spacing:2px;
+
+}
+
+.ratingBadge .ratingScore{
+
+font-family:var(--font-heading);
+font-size:22px;
+color:white;
+
+}
+
+.ratingBadge .ratingSource{
+
+font-size:13px;
+letter-spacing:1px;
+color:#999;
+
+}
+
+.mapSection{
+
+width:100%;
+padding:0 9% 140px;
+
+}
+
+.mapSection iframe{
+
+border-radius:24px;
+filter:grayscale(.25) contrast(1.05);
+
+}
 
 padding:60px;
 
@@ -1057,9 +1170,17 @@ padding:90px 8%;
 
 }
 
-.item{
+.mapSection{
 
-flex-wrap:wrap;
+padding:0 8% 90px;
+
+}
+
+.mapSection iframe{
+
+height:340px;
+
+}
 
 gap:10px;
 
@@ -1186,6 +1307,26 @@ padding:70px 6%;
 
 }
 
+.mapSection{
+
+padding:0 6% 70px;
+
+}
+
+.mapSection iframe{
+
+height:260px;
+border-radius:16px;
+
+}
+
+.ratingBadge{
+
+flex-wrap:wrap;
+padding:14px 20px;
+
+}
+
 .item{
 
 flex-direction:column;
@@ -1227,9 +1368,22 @@ font-size:13px;
 
 }
 
-.info div{
+.infoValue{
 
-font-size:16px;
+font-size:17px;
+
+}
+
+.infoRow{
+
+gap:14px;
+
+}
+
+.infoIcon{
+
+width:18px;
+height:18px;
 
 }
 
@@ -1718,29 +1872,71 @@ SCROLL
 
 <div class="info">
 
-<div>
+<div class="infoRow">
 
-📍 Новый Арбат, 52
-
-</div>
+<svg class="infoIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 21s-7-6.5-7-11.5A7 7 0 0 1 19 9.5C19 14.5 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
 
 <div>
 
-📞 +7 (977) 777-77-77
+<span class="infoLabel">Адрес</span>
+
+<span class="infoValue">Новый Арбат, 5</span>
 
 </div>
+
+</div>
+
+<div class="infoRow">
+
+<svg class="infoIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.5.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.2c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.5.1.4 0 .8-.2 1L6.6 10.8z"/></svg>
 
 <div>
 
-👨‍🍳 Шеф-повар — Колючков Иван
+<span class="infoLabel">Телефон</span>
+
+<span class="infoValue phoneValue">+7 (977) 777-77-77</span>
 
 </div>
+
+</div>
+
+<div class="infoRow">
+
+<svg class="infoIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 2c-3 3-4 5-4 8a4 4 0 0 0 8 0c0-3-1-5-4-8z"/><path d="M6 22c0-3 2.5-5 6-5s6 2 6 5"/></svg>
 
 <div>
 
-🕐 Ежедневно 12:00 — 00:00
+<span class="infoLabel">Шеф-повар</span>
+
+<span class="infoValue">Колючков Иван</span>
 
 </div>
+
+</div>
+
+<div class="infoRow">
+
+<svg class="infoIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+
+<div>
+
+<span class="infoLabel">Часы работы</span>
+
+<span class="infoValue">Ежедневно 12:00 — 00:00</span>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="ratingBadge">
+
+<span class="stars">★★★★★</span>
+
+<span class="ratingScore">5.0</span>
+
+<span class="ratingSource">на Яндекс Картах · 128 отзывов</span>
 
 </div>
 
@@ -1754,9 +1950,15 @@ SCROLL
 
 </section>
 
+<section class="mapSection">
+
+<iframe src="https://yandex.ru/map-widget/v1/?text=Москва%2C%20Новый%20Арбат%2C%205&z=16" width="100%" height="480" frameborder="0" style="border:0;" loading="lazy"></iframe>
+
+</section>
+
 <footer>
 
-<div style="font-family:'Cormorant Garamond';font-size:34px;letter-spacing:6px;">
+<div style="font-family:var(--font-heading);font-size:34px;letter-spacing:6px;">
 
 ASSOLUTO
 
@@ -1772,6 +1974,12 @@ ASSOLUTO
 <p style="margin-top:30px;font-size:13px;letter-spacing:3px;color:#666;">
 
 © 2026 ASSOLUTO
+
+</p>
+
+<p style="margin-top:14px;font-size:11px;letter-spacing:2px;color:#444;">
+
+Сайт создан — Novique Studio
 
 </p>
 
