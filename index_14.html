@@ -1,0 +1,2252 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ASSOLUTO | Итальянский ресторан</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Libre+Caslon+Display&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+scroll-behavior:smooth;
+}
+
+html{
+background:#090909;
+}
+
+body{
+
+font-family:Jost,sans-serif;
+background:#090909;
+color:white;
+overflow-x:hidden;
+
+}
+
+:root{
+
+--gold:#c6a46b;
+--wine:#6c1424;
+--cream:#efe5d5;
+--gray:#999;
+--font-heading:"Libre Caslon Display",serif;
+
+}
+
+::-webkit-scrollbar{
+
+width:8px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+background:var(--gold);
+
+}
+
+#loader{
+
+position:fixed;
+inset:0;
+background:#090909;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:99999;
+transition:1s;
+
+}
+
+.glass{
+
+width:90px;
+height:140px;
+border:3px solid var(--gold);
+border-radius:0 0 20px 20px;
+position:relative;
+overflow:hidden;
+
+}
+
+.wine{
+
+position:absolute;
+bottom:0;
+width:100%;
+height:0%;
+background:linear-gradient(#9f1835,#520915);
+animation:fill 3s forwards;
+
+}
+
+@keyframes fill{
+
+100%{
+
+height:80%;
+
+}
+
+}
+
+.loaderText{
+
+margin-top:35px;
+font-size:13px;
+letter-spacing:5px;
+color:var(--cream);
+
+}
+
+header{
+
+position:fixed;
+
+top:0;
+
+left:0;
+
+width:100%;
+
+padding:35px 7%;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+z-index:500;
+
+transition:.5s;
+
+background:rgba(9,9,9,.35);
+
+backdrop-filter:blur(18px) saturate(160%);
+
+-webkit-backdrop-filter:blur(18px) saturate(160%);
+
+border-bottom:1px solid rgba(255,255,255,.06);
+
+}
+
+header.scrolled{
+
+padding:20px 7%;
+
+background:rgba(9,9,9,.72);
+
+border-bottom:1px solid rgba(255,255,255,.1);
+
+}
+
+.logo{
+
+font-family:var(--font-heading);
+
+font-size:42px;
+
+letter-spacing:6px;
+
+font-weight:700;
+
+}
+
+nav{
+
+display:flex;
+
+gap:45px;
+
+}
+
+nav a{
+
+color:white;
+
+text-decoration:none;
+
+font-size:13px;
+
+letter-spacing:3px;
+
+transition:.3s;
+
+}
+
+nav a:hover{
+
+color:var(--gold);
+
+}
+
+.reserve{
+
+padding:14px 30px;
+
+border:1px solid var(--gold);
+
+text-decoration:none;
+
+color:white;
+
+letter-spacing:3px;
+
+font-size:12px;
+
+transition:.4s;
+
+}
+
+.reserve:hover{
+
+background:var(--gold);
+
+color:black;
+
+}
+
+.headerActions{
+
+display:flex;
+
+align-items:center;
+
+gap:25px;
+
+}
+
+.burger{
+
+display:none;
+
+flex-direction:column;
+
+justify-content:space-between;
+
+width:26px;
+
+height:18px;
+
+background:none;
+
+border:none;
+
+cursor:pointer;
+
+padding:0;
+
+z-index:600;
+
+position:relative;
+
+}
+
+.burger span{
+
+display:block;
+
+width:100%;
+
+height:2px;
+
+background:white;
+
+transition:.3s;
+
+}
+
+.burger.open span:nth-child(1){
+
+transform:translateY(8px) rotate(45deg);
+
+}
+
+.burger.open span:nth-child(2){
+
+opacity:0;
+
+}
+
+.burger.open span:nth-child(3){
+
+transform:translateY(-8px) rotate(-45deg);
+
+}
+
+.mobileMenu{
+
+position:fixed;
+
+top:0;
+
+right:-100%;
+
+width:75%;
+
+max-width:320px;
+
+height:100vh;
+
+background:rgba(9,9,9,.98);
+
+backdrop-filter:blur(20px);
+
+-webkit-backdrop-filter:blur(20px);
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+
+align-items:center;
+
+gap:38px;
+
+z-index:550;
+
+transition:right .5s ease;
+
+border-left:1px solid rgba(255,255,255,.08);
+
+}
+
+.mobileMenu.open{
+
+right:0;
+
+}
+
+.mobileMenuClose{
+
+position:absolute;
+
+top:30px;
+
+right:30px;
+
+background:none;
+
+border:none;
+
+color:white;
+
+font-size:34px;
+
+line-height:1;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.mobileMenuClose:hover{
+
+color:var(--gold);
+
+}
+
+.mobileMenu a{
+
+color:white;
+
+text-decoration:none;
+
+font-size:22px;
+
+letter-spacing:3px;
+
+font-family:var(--font-heading);
+
+transition:.3s;
+
+}
+
+.mobileMenu a:hover{
+
+color:var(--gold);
+
+}
+
+.hero{
+
+height:100vh;
+
+height:100svh;
+
+position:relative;
+
+display:flex;
+
+align-items:center;
+
+padding-left:8%;
+
+overflow:hidden;
+
+}
+
+.hero video{
+
+position:absolute;
+
+width:100%;
+
+height:100%;
+
+object-fit:cover;
+
+top:0;
+
+left:0;
+
+opacity:.28;
+
+}
+
+.overlay{
+
+position:absolute;
+
+inset:0;
+
+background:
+
+linear-gradient(to bottom,
+
+rgba(0,0,0,.4),
+
+rgba(9,9,9,.95));
+
+}
+
+.heroContent{
+
+position:relative;
+
+z-index:2;
+
+max-width:760px;
+
+}
+
+.kicker{
+
+color:var(--gold);
+
+letter-spacing:6px;
+
+font-size:13px;
+
+margin-bottom:20px;
+
+}
+
+.hero h1{
+
+font-size:150px;
+
+font-family:var(--font-heading);
+
+line-height:.85;
+
+font-weight:700;
+
+}
+
+.hero p{
+
+margin-top:30px;
+
+font-size:20px;
+
+line-height:1.9;
+
+max-width:620px;
+
+color:#ddd;
+
+}
+
+.heroButtons{
+
+margin-top:50px;
+
+display:flex;
+
+gap:25px;
+
+}
+
+.heroButtons a{
+
+padding:18px 40px;
+
+text-decoration:none;
+
+color:white;
+
+border:1px solid white;
+
+transition:.4s;
+
+}
+
+.heroButtons a:first-child{
+
+background:var(--gold);
+
+border:none;
+
+color:black;
+
+}
+
+.heroButtons a:hover{
+
+transform:translateY(-5px);
+
+}
+
+.scroll{
+
+position:absolute;
+
+bottom:45px;
+
+left:50%;
+
+transform:translateX(-50%);
+
+font-size:11px;
+
+letter-spacing:5px;
+
+color:#888;
+
+animation:float 2s infinite;
+
+}
+
+@keyframes float{
+
+50%{
+
+transform:translate(-50%,12px);
+
+}
+
+}
+
+.marquee{
+
+height:90px;
+
+display:flex;
+
+align-items:center;
+
+overflow:hidden;
+
+border-top:1px solid rgba(255,255,255,.08);
+
+border-bottom:1px solid rgba(255,255,255,.08);
+
+white-space:nowrap;
+
+}
+
+.track{
+
+display:flex;
+
+animation:run 28s linear infinite;
+
+}
+
+.track span{
+
+font-size:70px;
+
+font-family:var(--font-heading);
+
+margin-right:80px;
+
+color:#222;
+
+}
+
+.track b{
+
+color:#222;
+
+}
+
+@keyframes run{
+
+100%{
+
+transform:translateX(-50%);
+
+}
+
+}
+
+section{
+
+padding:140px 9%;
+
+}
+
+.about{
+
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+gap:120px;
+
+align-items:center;
+
+}
+
+.about small{
+
+color:var(--gold);
+
+letter-spacing:4px;
+
+}
+
+.about h2{
+
+font-size:70px;
+
+font-family:var(--font-heading);
+
+margin-top:20px;
+
+line-height:1;
+
+}
+
+.about p{
+
+margin-top:25px;
+
+font-size:18px;
+
+line-height:2;
+
+color:#bbb;
+
+}
+
+.imageCard{
+
+height:700px;
+
+border-radius:25px;
+
+overflow:hidden;
+
+position:relative;
+
+}
+
+.imageCard img{
+
+width:100%;
+
+height:100%;
+
+object-fit:cover;
+
+transition:1s;
+
+}
+
+.imageCard:hover img{
+
+transform:scale(1.05);
+
+}
+
+.menu{
+
+display:grid;
+grid-template-columns:420px 1fr;
+gap:100px;
+align-items:start;
+
+}
+
+.menuLeft{
+
+position:sticky;
+top:120px;
+
+}
+
+.menuLeft small{
+
+letter-spacing:4px;
+color:var(--gold);
+
+}
+
+.menuLeft h2{
+
+font-family:var(--font-heading);
+font-size:72px;
+margin-top:20px;
+line-height:.95;
+
+}
+
+.menuLeft p{
+
+margin-top:30px;
+color:#aaa;
+line-height:2;
+
+}
+
+.menuRight{
+
+display:flex;
+flex-direction:column;
+gap:35px;
+
+}
+
+.item{
+
+display:flex;
+justify-content:space-between;
+align-items:flex-end;
+padding-bottom:22px;
+border-bottom:1px solid rgba(255,255,255,.08);
+transition:.35s;
+
+}
+
+.item:hover{
+
+transform:translateX(20px);
+border-color:var(--gold);
+
+}
+
+.item h3{
+
+font-family:var(--font-heading);
+font-size:42px;
+font-weight:500;
+
+}
+
+.item span{
+
+color:#888;
+font-size:14px;
+display:block;
+margin-top:8px;
+
+}
+
+.price{
+
+font-size:28px;
+font-family:var(--font-heading);
+color:var(--gold);
+
+}
+
+.chef{
+
+display:grid;
+grid-template-columns:1fr 520px;
+gap:120px;
+align-items:center;
+
+}
+
+.chef h2{
+
+font-size:82px;
+font-family:var(--font-heading);
+
+}
+
+.chef p{
+
+margin-top:35px;
+line-height:1.9;
+font-size:18px;
+color:#ccc;
+
+}
+
+.chefImage{
+
+height:700px;
+border-radius:30px;
+overflow:hidden;
+
+}
+
+.chefImage img{
+
+width:100%;
+height:100%;
+object-fit:cover;
+transition:1s;
+
+}
+
+.chefImage:hover img{
+
+transform:scale(1.08);
+
+}
+
+.booking{
+
+text-align:center;
+
+}
+
+.booking small{
+
+letter-spacing:5px;
+color:var(--gold);
+
+}
+
+.booking h2{
+
+font-family:var(--font-heading);
+font-size:90px;
+margin:20px 0 70px;
+
+}
+
+.form{
+
+max-width:900px;
+margin:auto;
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:25px;
+
+}
+
+.form input,
+.form select{
+
+height:70px;
+background:#111;
+border:1px solid rgba(255,255,255,.08);
+color:white;
+padding:0 25px;
+font-size:15px;
+
+}
+
+.form button{
+
+grid-column:1/3;
+
+height:75px;
+
+background:var(--gold);
+
+border:none;
+
+font-size:15px;
+
+letter-spacing:3px;
+
+cursor:pointer;
+
+transition:.4s;
+
+}
+
+.form button:hover{
+
+transform:translateY(-6px);
+
+}
+
+.contacts{
+
+display:grid;
+
+grid-template-columns:1fr 1fr;
+
+gap:80px;
+
+align-items:center;
+
+}
+
+.contacts h2{
+
+font-size:82px;
+
+font-family:var(--font-heading);
+
+}
+
+.info{
+
+display:flex;
+
+flex-direction:column;
+
+gap:34px;
+
+margin-top:50px;
+
+}
+
+.infoRow{
+
+display:flex;
+
+align-items:flex-start;
+
+gap:20px;
+
+}
+
+.infoIcon{
+
+width:22px;
+
+height:22px;
+
+flex-shrink:0;
+
+color:var(--gold);
+
+margin-top:4px;
+
+}
+
+.infoLabel{
+
+display:block;
+
+font-size:11px;
+
+letter-spacing:3px;
+
+text-transform:uppercase;
+
+color:#888;
+
+font-family:Jost,sans-serif;
+
+margin-bottom:6px;
+
+}
+
+.infoValue{
+
+display:block;
+
+font-family:var(--font-heading);
+
+font-size:24px;
+
+font-weight:400;
+
+color:#f2f2f2;
+
+letter-spacing:.3px;
+
+}
+
+.phoneValue{
+
+font-family:Jost,sans-serif;
+
+font-weight:500;
+
+letter-spacing:1px;
+
+font-size:22px;
+
+}
+
+.ratingBadge{
+
+margin-top:40px;
+display:inline-flex;
+align-items:center;
+gap:14px;
+padding:16px 26px;
+border:1px solid rgba(198,164,107,.35);
+border-radius:100px;
+background:rgba(198,164,107,.06);
+
+}
+
+.ratingBadge .stars{
+
+color:var(--gold);
+font-size:16px;
+letter-spacing:2px;
+
+}
+
+.ratingBadge .ratingScore{
+
+font-family:var(--font-heading);
+font-size:22px;
+color:white;
+
+}
+
+.ratingBadge .ratingSource{
+
+font-size:13px;
+letter-spacing:1px;
+color:#999;
+
+}
+
+.mapSection{
+
+width:100%;
+padding:0 9% 140px;
+
+}
+
+.mapSection iframe{
+
+border-radius:24px;
+filter:grayscale(.25) contrast(1.05);
+
+}
+
+footer{
+
+padding:60px;
+
+text-align:center;
+
+color:#777;
+
+border-top:1px solid rgba(255,255,255,.08);
+
+}
+
+@media(max-width:1100px){
+
+.hero h1{
+
+font-size:95px;
+
+}
+
+.about,
+.menu,
+.chef,
+.contacts{
+
+grid-template-columns:1fr;
+
+}
+
+.menuLeft{
+
+position:relative;
+top:0;
+
+}
+
+.heroButtons{
+
+flex-direction:column;
+
+}
+
+nav{
+
+display:none;
+
+}
+
+header{
+
+justify-content:space-between;
+
+}
+
+.burger{
+
+display:flex;
+
+}
+
+.form{
+
+grid-template-columns:1fr;
+
+}
+
+.form button{
+
+grid-column:auto;
+
+}
+
+}
+
+@media(max-width:700px){
+
+.hero{
+
+padding:0 8%;
+
+}
+
+.hero h1{
+
+font-size:68px;
+
+}
+
+.hero p{
+
+font-size:16px;
+
+line-height:1.8;
+
+}
+
+.about h2,
+.menuLeft h2,
+.chef h2,
+.booking h2,
+.contacts h2{
+
+font-size:52px;
+
+}
+
+.track span{
+
+font-size:42px;
+
+}
+
+.imageCard,
+.chefImage{
+
+height:420px;
+
+}
+
+section{
+
+padding:90px 8%;
+
+}
+
+.mapSection{
+
+padding:0 8% 90px;
+
+}
+
+.mapSection iframe{
+
+height:340px;
+
+}
+
+.item{
+
+flex-wrap:wrap;
+
+gap:10px;
+
+}
+
+.item h3{
+
+font-size:32px;
+
+}
+
+footer{
+
+padding:50px 25px;
+
+}
+
+}
+
+@media(max-width:480px){
+
+.logo{
+
+font-size:26px;
+
+letter-spacing:3px;
+
+}
+
+.reserve{
+
+display:none;
+
+}
+
+header{
+
+padding:22px 6%;
+
+}
+
+header.scrolled{
+
+padding:16px 6%;
+
+}
+
+.kicker{
+
+font-size:11px;
+
+letter-spacing:4px;
+
+}
+
+.hero h1{
+
+font-size:48px;
+
+}
+
+.hero p{
+
+font-size:15px;
+
+}
+
+.heroButtons a{
+
+padding:16px 28px;
+
+font-size:13px;
+
+text-align:center;
+
+}
+
+.about h2,
+.menuLeft h2,
+.chef h2,
+.booking h2,
+.contacts h2{
+
+font-size:38px;
+
+}
+
+.about p,
+.chef p,
+.menuLeft p{
+
+font-size:15px;
+
+line-height:1.8;
+
+}
+
+.track span{
+
+font-size:30px;
+
+margin-right:45px;
+
+}
+
+.marquee{
+
+height:65px;
+
+}
+
+.imageCard,
+.chefImage{
+
+height:280px;
+
+border-radius:16px;
+
+}
+
+section{
+
+padding:70px 6%;
+
+}
+
+.mapSection{
+
+padding:0 6% 70px;
+
+}
+
+.mapSection iframe{
+
+height:260px;
+border-radius:16px;
+
+}
+
+.ratingBadge{
+
+flex-wrap:wrap;
+padding:14px 20px;
+
+}
+
+.item{
+
+flex-direction:column;
+
+align-items:flex-start;
+
+gap:6px;
+
+}
+
+.item h3{
+
+font-size:26px;
+
+}
+
+.price{
+
+font-size:22px;
+
+}
+
+.form input,
+.form select{
+
+height:58px;
+
+font-size:14px;
+
+padding:0 18px;
+
+}
+
+.form button{
+
+height:60px;
+
+font-size:13px;
+
+}
+
+.infoValue{
+
+font-size:17px;
+
+}
+
+.infoRow{
+
+gap:14px;
+
+}
+
+.infoIcon{
+
+width:18px;
+height:18px;
+
+}
+
+footer{
+
+padding:40px 20px;
+
+}
+
+footer p{
+
+font-size:13px;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div id="loader">
+
+<div class="glass">
+
+<div class="wine"></div>
+
+</div>
+
+<div class="loaderText">
+
+ASSOLUTO
+
+</div>
+
+</div>
+
+<header>
+
+<div class="logo">
+
+ASSOLUTO
+
+</div>
+
+<nav>
+
+<a href="#about">О ресторане</a>
+
+<a href="#menu">Меню</a>
+
+<a href="#chef">Шеф</a>
+
+<a href="#booking">Бронь</a>
+
+</nav>
+
+<div class="headerActions">
+
+<a class="reserve" href="#booking">
+
+ЗАБРОНИРОВАТЬ
+
+</a>
+
+<button class="burger" id="burgerBtn" aria-label="Открыть меню">
+
+<span></span>
+
+<span></span>
+
+<span></span>
+
+</button>
+
+</div>
+
+</header>
+
+<div class="mobileMenu" id="mobileMenu">
+
+<button class="mobileMenuClose" id="mobileMenuClose" aria-label="Закрыть меню">
+
+&times;
+
+</button>
+
+<a href="#about">О ресторане</a>
+
+<a href="#menu">Меню</a>
+
+<a href="#chef">Шеф</a>
+
+<a href="#booking">Бронь</a>
+
+</div>
+
+<section class="hero">
+
+<video autoplay muted playsinline id="heroVideo" preload="auto">
+
+<source src="pizza.mp4" type="video/mp4">
+
+</video>
+
+<video muted playsinline id="heroVideoReverse" preload="auto" style="position:absolute;width:100%;height:100%;object-fit:cover;top:0;left:0;opacity:0;">
+
+<source src="pizza_reverse.mp4" type="video/mp4">
+
+</video>
+
+<div class="overlay"></div>
+
+<div class="heroContent">
+
+<div class="kicker">
+
+НОВЫЙ АРБАТ • МОСКВА
+
+</div>
+
+<h1>
+
+ASSOLUTO
+
+</h1>
+
+<p>
+
+Итальянский ресторан, где классическая кухня встречается
+с современной подачей. Каждое блюдо создано, чтобы
+стать главным событием вашего вечера.
+
+</p>
+
+<div class="heroButtons">
+
+<a href="#booking">
+
+Забронировать стол
+
+</a>
+
+<a href="#menu">
+
+Открыть меню
+
+</a>
+
+</div>
+
+</div>
+
+<div class="scroll">
+
+SCROLL
+
+</div>
+
+</section>
+
+<div class="marquee">
+
+<div class="track">
+
+<span><b>PASTA</b> • PIZZA • RISOTTO • BURRATA • WINE • TIRAMISU • CARBONARA • APEROL •</span>
+
+<span><b>PASTA</b> • PIZZA • RISOTTO • BURRATA • WINE • TIRAMISU • CARBONARA • APEROL •</span>
+
+</div>
+
+</div>
+<section class="about" id="about">
+
+<div>
+
+<small>ФИЛОСОФИЯ ASSOLUTO</small>
+
+<h2>
+Не просто ужин.
+<br>
+Настоящее путешествие
+<br>
+в Италию.
+</h2>
+
+<p>
+Мы вдохновляемся небольшими семейными ресторанами Флоренции,
+Рима и Милана, где каждое блюдо становится поводом
+для долгого разговора за бокалом хорошего вина.
+</p>
+
+<p>
+Интерьер построен на игре света,
+натуральных материалов и современной эстетики.
+Никакой показной роскоши —
+только атмосфера, вкус и детали.
+</p>
+
+</div>
+
+<div class="imageCard">
+
+<img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80">
+
+</div>
+
+</section>
+
+
+
+<section class="menu" id="menu">
+
+<div class="menuLeft">
+
+<small>МЕНЮ</small>
+
+<h2>
+Авторская
+<br>
+итальянская
+<br>
+кухня
+</h2>
+
+<p>
+
+Каждое блюдо готовится исключительно
+из свежих продуктов.
+Мы соединяем классику Италии
+с современными гастрономическими техниками.
+
+</p>
+
+</div>
+
+<div class="menuRight">
+
+<div class="item">
+
+<div>
+
+<h3>Карбонара</h3>
+
+<span>Гуанчале · Пекорино · Желток</span>
+
+</div>
+
+<div class="price">
+
+890 ₽
+
+</div>
+
+</div>
+
+<div class="item">
+
+<div>
+
+<h3>Тальятелле с трюфелем</h3>
+
+<span>Трюфель · Сливочный соус</span>
+
+</div>
+
+<div class="price">
+
+1290 ₽
+
+</div>
+
+</div>
+
+<div class="item">
+
+<div>
+
+<h3>Буррата</h3>
+
+<span>Томаты · Базилик · Оливковое масло</span>
+
+</div>
+
+<div class="price">
+
+990 ₽
+
+</div>
+
+</div>
+
+<div class="item">
+
+<div>
+
+<h3>Пицца Диавола</h3>
+
+<span>Пепперони · Моцарелла</span>
+
+</div>
+
+<div class="price">
+
+970 ₽
+
+</div>
+
+</div>
+
+<div class="item">
+
+<div>
+
+<h3>Оссобуко</h3>
+
+<span>Телятина · Красное вино</span>
+
+</div>
+
+<div class="price">
+
+1890 ₽
+
+</div>
+
+</div>
+
+<div class="item">
+
+<div>
+
+<h3>Тирамису</h3>
+
+<span>Маскарпоне · Эспрессо</span>
+
+</div>
+
+<div class="price">
+
+690 ₽
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<section class="chef" id="chef">
+
+<div>
+
+<small style="color:#c6a46b;letter-spacing:5px;">
+
+ШЕФ-ПОВАР
+
+</small>
+
+<h2>
+
+Колючков
+<br>
+Иван
+
+</h2>
+
+<p>
+
+Автор концепции кухни ASSOLUTO.
+
+В основе его философии —
+уважение к классическим рецептам,
+локальным продуктам и современной подаче.
+
+Каждое блюдо проходит десятки дегустаций,
+прежде чем попасть в меню ресторана.
+
+</p>
+
+</div>
+
+<div class="chefImage">
+
+<img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?auto=format&fit=crop&w=1200&q=80">
+
+</div>
+
+</section>
+
+
+
+<section class="booking" id="booking">
+
+<small>
+
+БРОНИРОВАНИЕ
+
+</small>
+
+<h2>
+
+Ваш стол уже
+<br>
+ждет вас
+
+</h2>
+
+<form class="form" id="bookingForm" action="https://docs.google.com/forms/d/e/1FAIpQLSetreD0NFsNnB_styxN1-vVVRHjbfGUPIcwwY1oTv7QxlfEqw/formResponse" method="POST" target="hidden_iframe">
+
+<input name="entry.39513752" placeholder="Ваше имя" required>
+
+<input name="entry.552831916" placeholder="Номер телефона" required>
+
+<input id="dateInput" type="date" required>
+
+<select name="entry.1697845307">
+
+<option value="1">1 гость</option>
+
+<option value="2">2 гостя</option>
+
+<option value="3">3 гостя</option>
+
+<option value="4">4 гостя</option>
+
+<option value="5">5 гостей</option>
+
+<option value="6+">6+ гостей</option>
+
+</select>
+
+<input id="timeInput" type="time" required>
+
+<input name="entry.1871207031" placeholder="Комментарий">
+
+<input type="hidden" name="entry.296714072_year">
+
+<input type="hidden" name="entry.296714072_month">
+
+<input type="hidden" name="entry.296714072_day">
+
+<input type="hidden" name="entry.641680349_hour">
+
+<input type="hidden" name="entry.641680349_minute">
+
+<button type="submit">
+
+ЗАБРОНИРОВАТЬ СТОЛ
+
+</button>
+
+</form>
+
+<iframe name="hidden_iframe" id="hidden_iframe" style="display:none;"></iframe>
+
+<div id="bookingMessage" style="margin-top:25px;color:var(--gold);letter-spacing:2px;font-size:14px;display:none;">
+
+Спасибо! Ваша заявка на бронь отправлена, мы свяжемся с вами для подтверждения.
+
+</div>
+
+</section>
+<section class="contacts" id="contacts">
+
+<div>
+
+<small style="color:#c6a46b;letter-spacing:5px;">
+
+КОНТАКТЫ
+
+</small>
+
+<h2>
+
+Ждем вас
+<br>
+каждый день
+
+</h2>
+
+<div class="info">
+
+<div class="infoRow">
+
+<svg class="infoIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 21s-7-6.5-7-11.5A7 7 0 0 1 19 9.5C19 14.5 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>
+
+<div>
+
+<span class="infoLabel">Адрес</span>
+
+<span class="infoValue">Новый Арбат, 5</span>
+
+</div>
+
+</div>
+
+<div class="infoRow">
+
+<svg class="infoIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M6.6 10.8c1.4 2.8 3.8 5.2 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.5.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.2c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.5.1.4 0 .8-.2 1L6.6 10.8z"/></svg>
+
+<div>
+
+<span class="infoLabel">Телефон</span>
+
+<span class="infoValue phoneValue">+7 (977) 777-77-77</span>
+
+</div>
+
+</div>
+
+<div class="infoRow">
+
+<svg class="infoIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M12 2c-3 3-4 5-4 8a4 4 0 0 0 8 0c0-3-1-5-4-8z"/><path d="M6 22c0-3 2.5-5 6-5s6 2 6 5"/></svg>
+
+<div>
+
+<span class="infoLabel">Шеф-повар</span>
+
+<span class="infoValue">Колючков Иван</span>
+
+</div>
+
+</div>
+
+<div class="infoRow">
+
+<svg class="infoIcon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+
+<div>
+
+<span class="infoLabel">Часы работы</span>
+
+<span class="infoValue">Ежедневно 12:00 — 00:00</span>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="ratingBadge">
+
+<span class="stars">★★★★★</span>
+
+<span class="ratingScore">5.0</span>
+
+<span class="ratingSource">на Яндекс Картах · 128 отзывов</span>
+
+</div>
+
+</div>
+
+<div class="imageCard">
+
+<img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?auto=format&fit=crop&w=1200&q=80">
+
+</div>
+
+</section>
+
+<section class="mapSection">
+
+<iframe src="https://yandex.ru/map-widget/v1/?text=Москва%2C%20Новый%20Арбат%2C%205&z=16" width="100%" height="480" frameborder="0" style="border:0;" loading="lazy"></iframe>
+
+</section>
+
+<footer>
+
+<div style="font-family:var(--font-heading);font-size:34px;letter-spacing:6px;">
+
+ASSOLUTO
+
+</div>
+
+<p style="margin-top:20px;line-height:2;">
+
+Итальянский ресторан новой гастрономии.
+Создано с вниманием к каждой детали.
+
+</p>
+
+<p style="margin-top:30px;font-size:13px;letter-spacing:3px;color:#666;">
+
+© 2026 ASSOLUTO
+
+</p>
+
+<p style="margin-top:14px;font-size:11px;letter-spacing:2px;color:#444;">
+
+Сайт создан — Novique Studio
+
+</p>
+
+</footer>
+
+<script>
+
+const loader=document.getElementById("loader");
+
+window.addEventListener("load",()=>{
+
+setTimeout(()=>{
+
+loader.style.opacity="0";
+loader.style.pointerEvents="none";
+
+setTimeout(()=>{
+
+loader.remove();
+
+},1000);
+
+},3200);
+
+});
+
+const video=document.getElementById("heroVideo");
+
+const videoRev=document.getElementById("heroVideoReverse");
+
+if(video&&videoRev){
+
+video.addEventListener("ended",()=>{
+
+video.style.opacity="0";
+videoRev.style.opacity=".28";
+videoRev.currentTime=0;
+videoRev.play().catch(()=>{});
+
+});
+
+videoRev.addEventListener("ended",()=>{
+
+videoRev.style.opacity="0";
+video.style.opacity=".28";
+video.currentTime=0;
+video.play().catch(()=>{});
+
+});
+
+video.play().catch(()=>{});
+
+}
+
+const observer=new IntersectionObserver((entries)=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+entry.target.animate([
+
+{
+
+opacity:0,
+
+transform:"translateY(60px)"
+
+},
+
+{
+
+opacity:1,
+
+transform:"translateY(0)"
+
+}
+
+],{
+
+duration:900,
+
+fill:"forwards",
+
+easing:"ease"
+
+});
+
+}
+
+});
+
+});
+
+document.querySelectorAll("section").forEach(section=>{
+
+section.style.opacity="0";
+
+observer.observe(section);
+
+});
+
+const cards=document.querySelectorAll(".imageCard img,.chefImage img");
+
+cards.forEach(card=>{
+
+card.addEventListener("mousemove",(e)=>{
+
+const x=(e.offsetX/card.clientWidth-.5)*12;
+
+const y=(e.offsetY/card.clientHeight-.5)*12;
+
+card.style.transform=`scale(1.08) rotateX(${-y}deg) rotateY(${x}deg)`;
+
+});
+
+card.addEventListener("mouseleave",()=>{
+
+card.style.transform="scale(1) rotateX(0) rotateY(0)";
+
+});
+
+});
+
+const bookingForm=document.getElementById("bookingForm");
+
+const bookingMessage=document.getElementById("bookingMessage");
+
+const hiddenIframe=document.getElementById("hidden_iframe");
+
+let bookingSubmitted=false;
+
+if(bookingForm){
+
+bookingForm.addEventListener("submit",()=>{
+
+const dateVal=document.getElementById("dateInput").value;
+
+const timeVal=document.getElementById("timeInput").value;
+
+if(dateVal){
+
+const[y,m,d]=dateVal.split("-");
+
+bookingForm.querySelector('[name="entry.296714072_year"]').value=y;
+
+bookingForm.querySelector('[name="entry.296714072_month"]').value=parseInt(m,10);
+
+bookingForm.querySelector('[name="entry.296714072_day"]').value=parseInt(d,10);
+
+}
+
+if(timeVal){
+
+const[h,min]=timeVal.split(":");
+
+bookingForm.querySelector('[name="entry.641680349_hour"]').value=parseInt(h,10);
+
+bookingForm.querySelector('[name="entry.641680349_minute"]').value=parseInt(min,10);
+
+}
+
+bookingSubmitted=true;
+
+});
+
+}
+
+if(hiddenIframe){
+
+hiddenIframe.addEventListener("load",()=>{
+
+if(bookingSubmitted){
+
+bookingMessage.style.display="block";
+
+bookingForm.reset();
+
+bookingSubmitted=false;
+
+}
+
+});
+
+}
+
+const burgerBtn=document.getElementById("burgerBtn");
+
+const mobileMenu=document.getElementById("mobileMenu");
+
+const mobileMenuClose=document.getElementById("mobileMenuClose");
+
+if(burgerBtn&&mobileMenu){
+
+burgerBtn.addEventListener("click",()=>{
+
+burgerBtn.classList.toggle("open");
+
+mobileMenu.classList.toggle("open");
+
+});
+
+mobileMenu.querySelectorAll("a").forEach(link=>{
+
+link.addEventListener("click",()=>{
+
+burgerBtn.classList.remove("open");
+
+mobileMenu.classList.remove("open");
+
+});
+
+});
+
+}
+
+if(mobileMenuClose){
+
+mobileMenuClose.addEventListener("click",()=>{
+
+burgerBtn.classList.remove("open");
+
+mobileMenu.classList.remove("open");
+
+});
+
+}
+
+const headerEl=document.querySelector("header");
+
+window.addEventListener("scroll",()=>{
+
+if(headerEl){
+
+if(window.scrollY>50){
+
+headerEl.classList.add("scrolled");
+
+}else{
+
+headerEl.classList.remove("scrolled");
+
+}
+
+}
+
+});
+
+window.addEventListener("scroll",()=>{
+
+const scroll=window.scrollY;
+
+document.querySelectorAll(".hero video").forEach(v=>{
+
+v.style.transform=`translateY(${scroll*0.25}px) scale(1.08)`;
+
+});
+
+});
+
+</script>
+
+</body>
+</html>
